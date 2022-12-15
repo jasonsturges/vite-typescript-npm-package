@@ -10,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "start": "vite --host",
+    "start": "vite --host --open",
     "build": "tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
     "watch": "tsc && vite build --watch",
     "lint:scripts": "eslint . --ext .ts",
