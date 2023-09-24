@@ -15,18 +15,18 @@ Begin via any of the following:
 
 - Press the "*Use this template*" button
 
-- Use [degit](https://github.com/Rich-Harris/degit) to execute: 
+- Use [degit](https://github.com/Rich-Harris/degit) to execute:
 
     ```
     degit github:jasonsturges/vite-typescript-npm-package
     ```
-    
-- Use [GitHub CLI](https://cli.github.com/) to execute: 
+
+- Use [GitHub CLI](https://cli.github.com/) to execute:
 
     ```
     gh repo create <name> --template="https://github.com/jasonsturges/vite-typescript-npm-package"
     ```
-    
+
 - Simply `git clone`, delete the existing .git folder, and then:
 
     ```
@@ -42,9 +42,15 @@ Remember to use `npm search <term>` to avoid naming conflicts in the NPM Registe
 
 The following tasks are available for `npm run`:
 
-- `start`: Run Vite in host mode for a local development environment (not included in production build)
+- `start`: Run Vite in host mode for a local development environment
 - `watch`: Run Vite in watch mode to detect changes to files during development
 - `build`: Run Vite to build a production release distributable
+- `build:types`: Run DTS Generator to build d.ts type declarations only
+
+There are two strategies for development:
+
+- With `start` task, Vite hosts the index.html with real time HMR updates enabling development directly within this library without the need to link to other projects.
+- With `watch` task, Vite compiles are modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file
 
 
 ## Development
