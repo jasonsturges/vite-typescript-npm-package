@@ -97,7 +97,7 @@ For `yarn`, the `link` command creates symlinks which can be deleted from your h
 ~/.config/yarn/link
 ```
 
-For `npm`, the `link` command create global packages which can be removed by executing:
+For `npm`, the `link` command creates global packages which can be removed by executing:
 ```bash
 sudo npm rm --global "my-package-name"
 ```
@@ -119,7 +119,7 @@ package.json:
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@MyOrg"
   },
-  "repository": "https://github.com/MyOrg/vite-typescript-npm-package.git",
+  "repository": "https://github.com/MyOrg/my-package-name.git",
 ```
 
 Once ready to submit your package to the NPM Registry, execute the following tasks via `npm` (or `yarn`):
@@ -137,4 +137,10 @@ Submit your package to the registry:
 
 ```
 npm publish --access public
+```
+
+If your package name is already taken, search until you find an available name, update your `package.json`, and resubmit.
+
+```
+npm search <term>
 ```
