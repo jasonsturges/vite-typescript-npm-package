@@ -52,6 +52,24 @@ There are two strategies for development:
 - With `dev` task, Vite compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file
 - With `start` task, Vite hosts the index.html with real time HMR updates enabling development directly within this library without the need to link to other projects.
 
+Rollup your exports to the top-level index.ts for inclusion into the build distributable.
+
+For example, if you have a `utils/` folder that contains an `arrayUtils.ts` file.
+
+/src/utils/arrayUtils.ts:
+```ts
+export const distinct = <T>(array: T[] = []) => [...new Set(array)];
+```
+
+Include that export in the top-level `index.ts` .
+
+/src/index.ts
+```ts
+// Main library exports - these are packaged in your distributable
+export { distinct } from "./utils/arrayUtils"
+```
+
+
 
 ## Development
 
