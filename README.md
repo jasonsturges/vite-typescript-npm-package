@@ -5,8 +5,8 @@ Scaffold TypeScript npm packages using this template to bootstrap your next libr
 Versions of this template:
 - [Vite TypeScript library npm package](https://github.com/jasonsturges/vite-typescript-npm-package)
 - [Vite JavaScript library npm package](https://github.com/jasonsturges/vite-npm-package)
-- [Rollup JavaScript library npm package](https://github.com/jasonsturges/npm-package-boilerplate)
 - [Rollup TypeScript library npm package](https://github.com/jasonsturges/typescript-npm-package)
+- [Rollup JavaScript library npm package](https://github.com/jasonsturges/npm-package-boilerplate)
 
 
 ## Getting Started
@@ -42,25 +42,27 @@ Remember to use `npm search <term>` to avoid naming conflicts in the NPM Registe
 
 The following tasks are available for `npm run`:
 
-- `start`: Run Vite in host mode for a local development environment
-- `watch`: Run Vite in watch mode to detect changes to files during development
+- `dev`: Run Vite in watch mode to detect changes to files during development
+- `start`: Run Vite in host mode to work in a local development environment within this package, eliminating the need to test from a linked project
 - `build`: Run Vite to build a production release distributable
 - `build:types`: Run DTS Generator to build d.ts type declarations only
 
 There are two strategies for development:
 
+- With `dev` task, Vite compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file
 - With `start` task, Vite hosts the index.html with real time HMR updates enabling development directly within this library without the need to link to other projects.
-- With `watch` task, Vite compiles are modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file
 
 
 ## Development
 
-Vite features a host mode to enables development with real time HMR updates directly from the library via the `start` script.
+Vite features a host mode to enable development with real time HMR updates directly from the library via the `start` script.
 
 To test your library from within an app:
 
 - **From your library**: run `npm link` or `yarn link` command to register the package
 - **From your app**: run `npm link "mylib"` or `yarn link "mylib"` command to use the library inside your app during development
+
+For UI projects, you may want to consider adding tools such as [Storybook](https://storybook.js.org/) to isolate UI component development by running a `storybook` script from this package.
 
 
 ## Development Cleanup
