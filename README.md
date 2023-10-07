@@ -112,11 +112,20 @@ npm ls --global --depth 0
 
 Update your `package.json` to next version number, and remember to tag a release.
 
+If you are publishing to a private registry such as GitHub packages, update your `package.json` to include `publishConfig` and `repository`:
+
+package.json:
+```json
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@MyOrg"
+  },
+  "repository": "https://github.com/MyOrg/vite-typescript-npm-package.git",
+```
+
 Once ready to submit your package to the NPM Registry, execute the following tasks via `npm` (or `yarn`):
 
 - `npm run clean` &mdash; Assure a clean build
 - `npm run build` &mdash; Build the package
-- `npm run build:types` &mdash; Build API Extractor d.ts declaration
 
 Assure the proper npm login:
 
