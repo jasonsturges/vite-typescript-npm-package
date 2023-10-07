@@ -90,6 +90,23 @@ Once development completes, `unlink` both your library and test app projects.
 - **From your app**: run `npm link "mylib"` or `yarn link "mylib"` command to use the library inside your app during development
 - **From your library**: run `npm unlink` or `yarn unlink` command to register the package
 
+If you mistakenly forget to `unlink`, you can manually clean up artifacts from `yarn` or `npm`.
+
+For `yarn`, the `link` command creates symlinks which can be deleted from your home directory:
+```bash
+~/.config/yarn/link
+```
+
+For `npm`, the `link` command create global packages which can be removed by executing:
+```bash
+sudo npm rm --global "my-package-name"
+```
+
+Confirm your npm global packages with the command:
+```bash
+npm ls --global --depth 0
+```
+
 
 ## Release Publishing
 
