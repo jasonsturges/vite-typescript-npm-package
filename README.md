@@ -124,8 +124,15 @@ package.json:
 
 Once ready to submit your package to the NPM Registry, execute the following tasks via `npm` (or `yarn`):
 
-- `npm run clean` &mdash; Assure a clean build
 - `npm run build` &mdash; Build the package
+
+For clean builds, you may want to install the `rimraf` package and add a `clean` or `prebuild` script to your `package.json` to delete your dist folder:
+
+```json
+  "scripts": {
+    "clean": "rimraf dist"
+  }
+```
 
 Assure the proper npm login:
 
