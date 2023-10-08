@@ -30,6 +30,9 @@ Begin via any of the following:
 - Simply `git clone`, delete the existing .git folder, and then:
 
     ```
+    git clone https://github.com/jasonsturges/vite-typescript-npm-package.git
+    cd vite-typescript-npm-package
+    rm -rf .git
     git init
     git add -A
     git commit -m "Initial commit"
