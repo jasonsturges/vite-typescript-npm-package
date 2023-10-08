@@ -99,7 +99,7 @@ For `yarn`, the `link` command creates symlinks which can be deleted from your h
 
 For `npm`, the `link` command creates global packages which can be removed by executing:
 ```bash
-sudo npm rm --global "my-package-name"
+sudo npm rm --global "mylib"
 ```
 
 Confirm your npm global packages with the command:
@@ -110,7 +110,7 @@ npm ls --global --depth 0
 
 ## Release Publishing
 
-Update your `package.json` to next version number, and remember to tag a release.
+Update your `package.json` to the next version number and tag a release.
 
 If you are publishing to a private registry such as GitHub packages, update your `package.json` to include `publishConfig` and `repository`:
 
@@ -119,7 +119,7 @@ package.json:
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@MyOrg"
   },
-  "repository": "https://github.com/MyOrg/my-package-name.git",
+  "repository": "https://github.com/MyOrg/mylib.git",
 ```
 
 Once ready to submit your package to the NPM Registry, execute the following tasks via `npm` (or `yarn`):
