@@ -38,6 +38,8 @@ Begin via any of the following:
     git commit -m "Initial commit"
     ````
 
+There is no package lock included so that you may chose either `npm` or `yarn`.
+
 Remember to use `npm search <term>` to avoid naming conflicts in the NPM Registery for your new package name.
 
 
