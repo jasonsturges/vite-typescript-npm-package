@@ -136,7 +136,7 @@ package.json:
   }
 ```
 
-Before you submit for the first time, make sure your package name is available by using npm search.  If npm rejects your package name, update your `package.json` and resubmit.
+Before you submit for the first time, make sure your package name is available by using `npm search`.  If npm rejects your package name, update your `package.json` and resubmit.
 
 ```bash
 npm search <term>
