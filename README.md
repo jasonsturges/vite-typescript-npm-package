@@ -133,22 +133,24 @@ package.json:
 
 Once ready to submit your package to the NPM Registry, execute the following tasks via `npm` (or `yarn`):
 
-- `npm run build` &mdash; Build the package
+```bash
+npm run build
+```
 
 Assure the proper npm login:
 
-```
+```bash
 npm login
 ```
 
 Submit your package to the registry:
 
-```
+```bash
 npm publish --access public
 ```
 
 If your package name is already taken, search until you find an available name, update your `package.json`, and resubmit.
 
-```
+```bash
 npm search <term>
 ```
