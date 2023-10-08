@@ -93,7 +93,7 @@ Once development completes, `unlink` both your library and test app projects.
 If you mistakenly forget to `unlink`, you can manually clean up artifacts from `yarn` or `npm`.
 
 For `yarn`, the `link` command creates symlinks which can be deleted from your home directory:
-```bash
+```
 ~/.config/yarn/link
 ```
 
@@ -124,6 +124,7 @@ package.json:
 
 For clean builds, you may want to install the `rimraf` package and add a `clean` or `prebuild` script to your `package.json` to delete your dist folder:
 
+package.json:
 ```json
   "scripts": {
     "clean": "rimraf dist"
