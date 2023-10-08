@@ -136,6 +136,12 @@ package.json:
   }
 ```
 
+Before you submit for the first time, make sure your package name is available by using npm search.  If npm rejects your package name, update your `package.json` and resubmit.
+
+```bash
+npm search <term>
+```
+
 Once ready to submit your package to the NPM Registry, execute the following tasks via `npm` (or `yarn`):
 
 ```bash
@@ -154,8 +160,4 @@ Submit your package to the registry:
 npm publish --access public
 ```
 
-If your package name is already taken, search until you find an available name, update your `package.json`, and resubmit.
 
-```bash
-npm search <term>
-```
