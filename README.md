@@ -122,7 +122,7 @@ package.json:
   "repository": "https://github.com/MyOrg/mylib.git",
 ```
 
-For clean builds, you may want to install the `rimraf` package and add a `clean` or `prebuild` script to your `package.json` to delete your dist folder:
+For clean builds, you may want to install the `rimraf` package and add a `clean` or `prebuild` script to your `package.json` to remove any artifacts from your `dist/` folder.  Or, manually delete the `dist/` folder yourself.  Unless you are using a continuous integration service such as GitHub Actions, `npm publish` will ship anything inside the distributable folder.
 
 package.json:
 ```json
