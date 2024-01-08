@@ -68,7 +68,7 @@ export const distinct = <T>(array: T[] = []) => [...new Set(array)];
 
 Include that export in the top-level `index.ts` .
 
-/src/index.ts
+/src/index.ts:
 ```ts
 // Main library exports - these are packaged in your distributable
 export { distinct } from "./utils/arrayUtils"
