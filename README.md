@@ -12,19 +12,13 @@ Begin via any of the following:
 
 - Press the "*Use this template*" button
 
-- Use [degit](https://github.com/Rich-Harris/degit) to execute:
-
-    ```
-    degit github:jasonsturges/vite-typescript-npm-package
-    ```
-
 - Use [GitHub CLI](https://cli.github.com/) to execute:
 
     ```
     gh repo create <name> --template="https://github.com/jasonsturges/vite-typescript-npm-package"
     ```
 
-- Simply `git clone`, delete the existing .git folder, and then:
+- Simply `git clone`, delete the existing .git folder, and initialize a fresh repo:
 
     ```
     git clone https://github.com/jasonsturges/vite-typescript-npm-package.git
@@ -42,19 +36,14 @@ Remember to use `npm search <term>` to avoid naming conflicts in the NPM Registe
 
 ## Usage
 
-The following tasks are available for `npm run`:
+The following tasks are available:
 
-- `dev`: Run Vite in watch mode to detect changes to files during development
-- `start`: Run Vite in host mode to work in a local development environment within this package, eliminating the need to test from a linked project
+- `dev`: Run Vite in watch mode to detect changes - all modules are compiled to the `dist/` folder, as well as rollup of all types to a d.ts declaration file
+- `start`: Run Vite in host mode to work in a local development environment within this package - vite hosts the `index.html` with real time HMR updates
 - `build`: Run Vite to build a production release distributable
 - `build:types`: Run DTS Generator to build d.ts type declarations only
 
-There are two strategies for development:
-
-- With `dev` task, Vite compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file
-- With `start` task, Vite hosts the index.html with real time HMR updates enabling development directly within this library without the need to link to other projects.
-
-Rollup your exports to the top-level index.ts for inclusion into the build distributable.
+Rollup all your exports to the top-level index.ts for inclusion into the build distributable.
 
 For example, if you have a `utils/` folder that contains an `arrayUtils.ts` file.
 
@@ -72,25 +61,41 @@ export { distinct } from "./utils/arrayUtils"
 ```
 
 
-
 ## Development
 
-Vite features a host mode to enable development with real time HMR updates directly from the library via the `start` script.
+There are multiple strategies for development, either working directly from the library or from a linked project.
+
+### Local Development
+
+Vite features a host mode for development with real time HMR updates directly from the library via the `start` script.  This enables rapid development within the library instead of linking from other projects.
+
+Using the `start` task, Vite hosts the `index.html` for a local development environment.  This file is not included in the production build.  Note that only specified exports from the `index.ts` are ultimately bundled into the library.
+
+As an example, this template includes a React app, which could be replaced with a different framework such as Vue, Solid.js, Svelte, etc...
+
+For UI projects, you may want to consider adding tools such as [Storybook](https://storybook.js.org/) to isolate UI component development by running a `storybook` script from this package.
+
+
+### Project Development
+
+To use this library with other app projects before submitting to a registry such as NPM, run the `dev` script and link packages.
+
+Using the `dev` task, Vite detects changes and compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file.  
 
 To test your library from within an app:
 
-- **From your library**: run `npm link` or `yarn link` command to register the package
+- **From this library**: run `npm link` or `yarn link` command to register the package
 - **From your app**: run `npm link "mylib"` or `yarn link "mylib"` command to use the library inside your app during development
 
-For UI projects, you may want to consider adding tools such as [Storybook](https://storybook.js.org/) to isolate UI component development by running a `storybook` script from this package.
+Inside your app's `node_modules/` folder, a symlink is created to the library.
 
 
 ## Development Cleanup
 
 Once development completes, `unlink` both your library and test app projects.
 
-- **From your app**: run `npm link "mylib"` or `yarn link "mylib"` command to use the library inside your app during development
-- **From your library**: run `npm unlink` or `yarn unlink` command to register the package
+- **From your app**: run `npm unlink "mylib"` or `yarn unlink "mylib"` command to remove the library symlink
+- **From your library**: run `npm unlink` or `yarn unlink` command to unregister the package
 
 If you mistakenly forget to `unlink`, you can manually clean up artifacts from `yarn` or `npm`.
 
@@ -109,10 +114,14 @@ Confirm your npm global packages with the command:
 npm ls --global --depth 0
 ```
 
+For your app, simply reinstall dependencies to clear any forgotten linked packages.
+
 
 ## Release Publishing
 
 Update your `package.json` to the next version number and tag a release.
+
+Assure that your package lockfile is also upadted by running an install.
 
 If you are publishing to a private registry such as GitHub packages, update your `package.json` to include `publishConfig` and `repository`:
 
@@ -124,7 +133,9 @@ package.json:
   "repository": "https://github.com/MyOrg/mylib.git",
 ```
 
-For clean builds, you may want to install the `rimraf` package and add a `clean` or `prebuild` script to your `package.json` to remove any artifacts from your `dist/` folder.  Or, manually delete the `dist/` folder yourself.  Unless you are using a continuous integration service such as GitHub Actions, `npm publish` will ship anything inside the distributable folder.
+Unless you are using a continuous integration service such as GitHub Actions, assure that your `dist/` folder is cleanly build.  Note that `npm publish` will ship anything inside the distributable folder.
+
+For clean builds, you may want to install the `rimraf` package and add a `clean` or `prebuild` script to your `package.json` to remove any artifacts from your `dist/` folder.  Or, manually delete the `dist/` folder yourself.
 
 package.json:
 ```json
