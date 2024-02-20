@@ -121,7 +121,7 @@ For your app, simply reinstall dependencies to clear any forgotten linked packag
 
 Update your `package.json` to the next version number and tag a release.
 
-Assure that your package lockfile is also upadted by running an install.
+Assure that your package lockfile is also updated by running an install.  For npm, this will assure the lockfile has the updated version number.  Yarn does not duplicate the version number in the lockfile.
 
 If you are publishing to a private registry such as GitHub packages, update your `package.json` to include `publishConfig` and `repository`:
 
@@ -168,4 +168,47 @@ Submit your package to the registry:
 npm publish --access public
 ```
 
+## Continuous Integration
 
+For continuous integration with GitHub Actions, create a `.github/workflows/publish.yml`:
+
+```yml
+name: Publish Package to npmjs
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+This will deploy your build artifact when a release is tagged.
+
+Obtain an access token from [npm](https://www.npmjs.com/) by selecting your profile image in the upper right, and chosing "Access Tokens".
+
+To add secrets to your repository:
+- From your repository, select _Settings_
+- From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
+- From the _Variables_ tab, press _New repository variable_ to add the `NPM_TOKEN` key
+
+To add secrets to your organization:
+- From your organization, select _Settings_
+- From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
+- From the _Variables_ tab, press _New repository variable_ to add the `NPM_TOKEN` key
+
+For more information, see: [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
