@@ -69,7 +69,7 @@ There are multiple strategies for development, either working directly from the 
 
 Vite features a host mode for development with real time HMR updates directly from the library via the `start` script.  This enables rapid development within the library instead of linking from other projects.
 
-Using the `start` task, Vite hosts the `index.html` for a local development environment.  This file is not included in the production build.  Note that only specified exports from the `index.ts` are ultimately bundled into the library.
+Using the `start` task, Vite hosts the `index.html` for a local development environment.  This file is not included in the production build.  Note that only exports specified from the `index.ts` are ultimately bundled into the library.
 
 As an example, this template includes a React app, which could be replaced with a different framework such as Vue, Solid.js, Svelte, etc...
 
@@ -114,7 +114,7 @@ Confirm your npm global packages with the command:
 npm ls --global --depth 0
 ```
 
-For your app, simply reinstall dependencies to clear any forgotten linked packages.
+For your app, simply reinstall dependencies to clear any forgotten linked packages.  This will remove any symlinks in the `node_modules/` folder.
 
 
 ## Release Publishing
