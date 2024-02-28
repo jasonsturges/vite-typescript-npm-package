@@ -175,7 +175,7 @@ For continuous integration with GitHub Actions, create a `.github/workflows/publ
 name: Publish Package to npmjs
 on:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   build:
