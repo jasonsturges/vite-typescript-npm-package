@@ -204,11 +204,11 @@ Obtain an access token from [npm](https://www.npmjs.com/) by selecting your prof
 To add secrets to your repository:
 - From your repository, select _Settings_
 - From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
-- From the _Variables_ tab, press _New repository variable_ to add the `NPM_TOKEN` key
+- From the _Secrets_ tab, press _New repository secret_ to add the `NPM_TOKEN` key
 
 To add secrets to your organization:
 - From your organization, select _Settings_
 - From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
-- From the _Variables_ tab, press _New repository variable_ to add the `NPM_TOKEN` key
+- From the _Secrets_ tab, press _New repository secret_ to add the `NPM_TOKEN` key
 
 For more information, see: [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
