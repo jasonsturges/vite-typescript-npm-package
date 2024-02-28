@@ -130,7 +130,6 @@ package.json:
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@MyOrg"
   },
-  "repository": "https://github.com/MyOrg/mylib.git",
 ```
 
 Unless you are using a continuous integration service such as GitHub Actions, assure that your `dist/` folder is cleanly build.  Note that `npm publish` will ship anything inside the distributable folder.
@@ -199,7 +198,7 @@ jobs:
 
 This will deploy your build artifact when a release is tagged.
 
-Obtain an access token from [npm](https://www.npmjs.com/) by selecting your profile image in the upper right, and chosing "Access Tokens".
+Obtain an "Automation" CI/CD access token to bypass 2FA from [npm](https://www.npmjs.com/) by selecting your profile image in the upper right, and chosing "Access Tokens".
 
 To add secrets to your repository:
 - From your repository, select _Settings_
@@ -210,5 +209,16 @@ To add secrets to your organization:
 - From your organization, select _Settings_
 - From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
 - From the _Secrets_ tab, press _New repository secret_ to add the `NPM_TOKEN` key
+
+Assure either a `.npmrc` or `publishConfig` in your `package.json`:
+
+package.json:
+```json
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "scope": "username"
+  },
+```
 
 For more information, see: [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
