@@ -26,7 +26,7 @@
     "build:types": "dts-bundle-generator --config ./dts-bundle-generator.config.ts",
     "lint:scripts": "eslint ./src --ext .ts",
     "lint:styles": "stylelint ./**/*.{css,scss}",
-    "format:scripts": "prettier . --write",
+    "format:scripts": "prettier ./src --write",
     "format:styles": "stylelint ./**/*.{css,scss} --fix"
   },
   "dependencies": {
