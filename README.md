@@ -202,13 +202,13 @@ Obtain an "Automation" CI/CD access token to bypass 2FA from [npm](https://www.n
 
 To add secrets to your repository:
 - From your repository, select _Settings_
-- From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
+- From the _Security_ section of the sidebar, expand _Secrets and variables_ and select _Actions_
 - From the _Secrets_ tab, press _New repository secret_ to add the `NPM_TOKEN` key
 
 To add secrets to your organization:
 - From your organization, select _Settings_
-- From the _Security_ section of the sidebar, expand _Secrets and variables_, select _Actions_
-- From the _Secrets_ tab, press _New repository secret_ to add the `NPM_TOKEN` key
+- From the _Security_ section of the sidebar, expand _Secrets and variables_ and select _Actions_
+- From the _Secrets_ tab, press _New organization secret_ to add the `NPM_TOKEN` key
 
 Assure either a `.npmrc` or `publishConfig` in your `package.json`:
 
