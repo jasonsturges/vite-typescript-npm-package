@@ -4,6 +4,8 @@ Scaffold TypeScript npm packages using this template to bootstrap your next libr
 
 > [!TIP]
 > Looking for a JavaScript version of this template?  Try: [Vite JavaScript NPM Package](https://github.com/jasonsturges/vite-npm-package)
+>
+> Or, try a tsup version of this template: [tsup NPM Package](https://github.com/jasonsturges/tsup-npm-package)
 
 
 ## Getting Started
