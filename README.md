@@ -31,8 +31,6 @@ Begin via any of the following:
     git commit -m "Initial commit"
     ````
 
-There is no package lock included so that you may chose either `npm` or `yarn`.
-
 Remember to use `npm search <term>` to avoid naming conflicts in the NPM Registery for your new package name.
 
 
@@ -82,7 +80,7 @@ For UI projects, you may want to consider adding tools such as [Storybook](https
 
 To use this library with other app projects before submitting to a registry such as NPM, run the `dev` script and link packages.
 
-Using the `dev` task, Vite detects changes and compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file.  
+Using the `dev` task, Vite detects changes and compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file.
 
 To test your library from within an app:
 
@@ -131,7 +129,7 @@ package.json:
 ```json
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@MyOrg"
-  },
+  }
 ```
 
 Unless you are using a continuous integration service such as GitHub Actions, assure that your `dist/` folder is cleanly build.  Note that `npm publish` will ship anything inside the distributable folder.
@@ -171,7 +169,9 @@ npm publish --access public
 
 ## Continuous Integration
 
-For continuous integration with GitHub Actions, create a `.github/workflows/publish.yml`:
+For continuous integration with GitHub Actions, create a `.github/workflows/publish.yml`
+
+For public NPM packages, use the following workflow:
 
 ```yml
 name: Publish Package to npmjs
@@ -189,13 +189,41 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
       - run: npm run build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+```
+
+For private GitHub packages, use the following workflow:
+
+```yml
+name: Publish Package to GitHub Packages
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: "https://registry.npmjs.org"
+          scope: "@MyOrg"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish
 ```
 
 This will deploy your build artifact when a release is tagged.
@@ -220,9 +248,9 @@ package.json:
     "access": "public",
     "registry": "https://registry.npmjs.org/",
     "scope": "username"
-  },
+  }
 ```
 
-For more information, see: 
+For more information, see:
 - [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
 - [Publish to npmjs and GPR with npm](https://github.com/actions/setup-node/blob/main/docs/advanced-usage.md#publish-to-npmjs-and-gpr-with-npm)
