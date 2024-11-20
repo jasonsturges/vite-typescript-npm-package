@@ -123,6 +123,17 @@ Update your `package.json` to the next version number and tag a release.
 
 Assure that your package lockfile is also updated by running an install.  For npm, this will assure the lockfile has the updated version number.  Yarn does not duplicate the version number in the lockfile.
 
+Assure either a `.npmrc` or `publishConfig` in your `package.json`:
+
+package.json:
+```json
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "scope": "username"
+    "access": "public",
+  }
+```
+
 If you are publishing to a private registry such as GitHub packages, update your `package.json` to include `publishConfig` and `repository`:
 
 package.json:
@@ -239,17 +250,6 @@ To add secrets to your organization:
 - From your organization, select _Settings_
 - From the _Security_ section of the sidebar, expand _Secrets and variables_ and select _Actions_
 - From the _Secrets_ tab, press _New organization secret_ to add the `NPM_TOKEN` key
-
-Assure either a `.npmrc` or `publishConfig` in your `package.json`:
-
-package.json:
-```json
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/",
-    "scope": "username"
-  }
-```
 
 For more information, see:
 - [Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
