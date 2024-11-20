@@ -78,7 +78,11 @@ For UI projects, you may want to consider adding tools such as [Storybook](https
 
 ### Project Development
 
-To use this library with other app projects before submitting to a registry such as NPM, run the `dev` script and link packages.
+To use this library with other app projects before submitting to a registry such as NPM, either `link` or `pack` to test.
+
+#### Using Link
+
+Run the `dev` script and link packages.
 
 Using the `dev` task, Vite detects changes and compiles all modules to the `dist/` folder, as well as rollup of all types to a d.ts declaration file.
 
@@ -88,6 +92,22 @@ To test your library from within an app:
 - **From your app**: run `npm link "mylib"` or `yarn link "mylib"` command to use the library inside your app during development
 
 Inside your app's `node_modules/` folder, a symlink is created to the library.
+
+#### Using Pack
+
+From you library, pack it to create a tarball:
+
+```bash
+npm pack
+```
+
+This will create a [name].tgz tarball that includes the result of what will be uploaded to npm.
+
+Install the pack file in a test app:
+
+```bash
+npm install [name].tgz
+```
 
 
 ## Development Cleanup
